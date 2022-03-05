@@ -1,6 +1,6 @@
-## CS 2600 System Programming
-## Project 2
-## Travel Expenses
+### CS 2600 System Programming
+### Project 2
+### Travel Expenses
 
 
 ### Member:
