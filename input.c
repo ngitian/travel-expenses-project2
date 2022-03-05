@@ -59,6 +59,7 @@ int getHotelExpense() {
     return result;
 }
 
+// todo: change implementation
 int getMealExpenses() {
     int result = 0;
 
