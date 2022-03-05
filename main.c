@@ -40,8 +40,8 @@ int main() {
     calculateAirfare(airFare, &totalExpense, &totalAllowable);
     calculateCarRental(carRental, &totalExpense, &totalAllowable);
     calculateVehicleExpense(vehicleExpense, &totalExpense, &totalAllowable);
-    calculateParkingFees(parkingFees, &totalExpense, &totalAllowable, numOfDays);
-    calculateTaxiFees(taxiFees, &totalExpense, &totalAllowable, numOfDays);
+    calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable);
+    calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable);
     calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable);
     calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable);
     calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable);
