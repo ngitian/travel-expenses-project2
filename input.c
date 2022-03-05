@@ -60,7 +60,7 @@ int getHotelExpense() {
 }
 
 // todo: change implementation
-int getMealExpenses() {
+int getMealExpenses(int numOfDays) {
     int result = 0;
 
     return result;
