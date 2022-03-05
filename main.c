@@ -34,7 +34,7 @@ int main() {
     taxiFee = getTaxiFee();
     registrationFee = getRegistrationFee();
     hotelExpense = getHotelExpense();
-    mealExpense = getMealExpense(numOfDays, timeDeparture, timeArrival); // require numOfDays, timeDeparture, timeArrival
+    mealExpense = getMealExpense(numOfDays); // require numOfDays
 
     // calculation
     calculateAirfare(&totalExpense, &totalAllowable);
@@ -46,7 +46,6 @@ int main() {
     calculateHotelExpenses(&totalExpense, &totalAllowable, numOfDays);
     calculateMealExpenses(&totalExpense, &totalAllowable);
     
-
     // output
     display(totalExpense, totalAllowable);
 
