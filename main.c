@@ -15,11 +15,11 @@ int main() {
     int airFare;
     int carRental;
     int vehicleExpense;
-    int parkingFee;
-    int taxiFee;
-    int registrationFee;
-    int hotelExpense;
-    int mealExpense;
+    int parkingFees;
+    int taxiFees;
+    int registrationFees;
+    int hotelExpenses;
+    int mealExpenses; // need to implement meal Expense as array
 
     int totalExpense, totalAllowable = 0;
 
@@ -30,21 +30,21 @@ int main() {
     airFare = getAirFare();
     carRental = getCarRental();
     vehicleExpense = getVehicleExpense();
-    parkingFee = getParkingFee();
-    taxiFee = getTaxiFee();
-    registrationFee = getRegistrationFee();
-    hotelExpense = getHotelExpense();
-    mealExpense = getMealExpense(numOfDays); // require numOfDays
+    parkingFees = getParkingFee();
+    taxiFees = getTaxiFee();
+    registrationFees = getRegistrationFee();
+    hotelExpenses = getHotelExpense();
+    mealExpenses = getMealExpense(numOfDays); // require numOfDays
 
     // calculation
-    calculateAirfare(&totalExpense, &totalAllowable);
-    calculateCarRental(&totalExpense, &totalAllowable);
-    calculateVehicleExpense(&totalExpense, &totalAllowable);
-    calculateParkingFees(&totalExpense, &totalAllowable, numOfDays);
-    calculateTaxiFees(&totalExpense, &totalAllowable, numOfDays);
-    calculateRegistrationFees(&totalExpense, &totalAllowable);
-    calculateHotelExpenses(&totalExpense, &totalAllowable, numOfDays);
-    calculateMealExpenses(&totalExpense, &totalAllowable);
+    calculateAirfare(airFare, &totalExpense, &totalAllowable);
+    calculateCarRental(carRental, &totalExpense, &totalAllowable);
+    calculateVehicleExpense(vehicleExpense, &totalExpense, &totalAllowable);
+    calculateParkingFees(parkingFees, &totalExpense, &totalAllowable, numOfDays);
+    calculateTaxiFees(taxiFees, &totalExpense, &totalAllowable, numOfDays);
+    calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable);
+    calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable);
+    calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable);
     
     // output
     display(totalExpense, totalAllowable);
