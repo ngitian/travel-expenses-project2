@@ -21,7 +21,8 @@ int main() {
     int hotelExpenses;
     int mealExpenses; // need to implement meal Expense as array
 
-    int totalExpense, totalAllowable = 0;
+    int totalExpense = 0;
+    int totalAllowable = 0;
 
     // input
     numOfDays = getNumOfDays();
