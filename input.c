@@ -58,3 +58,9 @@ int getHotelExpense() {
 
     return result;
 }
+
+int getMealExpenses() {
+    int result = 0;
+
+    return result;
+}

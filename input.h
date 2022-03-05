@@ -10,4 +10,5 @@ int getParkingFee();
 int getTaxiFee();
 int getRegistrationFee();
 int getHotelExpense();
+int getMealExpenses();
 #endif

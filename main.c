@@ -29,11 +29,11 @@ int main() {
     timeArrival = getTimeArrival();
     airFare = getAirFare();
     carRental = getCarRental();
-    vehicleExpense = getVehicleExpense();
-    parkingFees = getParkingFee();
-    taxiFees = getTaxiFee();
-    registrationFees = getRegistrationFee();
-    hotelExpenses = getHotelExpense();
+    vehicleExpense = getVehicleExpenses();
+    parkingFees = getParkingFees();
+    taxiFees = getTaxiFees();
+    registrationFees = getRegistrationFees();
+    hotelExpenses = getHotelExpenses();
     mealExpenses = getMealExpense(numOfDays); // require numOfDays
 
     // calculation
