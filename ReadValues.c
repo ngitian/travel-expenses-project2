@@ -22,8 +22,8 @@ struct Money* readDollarInput(char *prompt)
     int currentNumberDigits = 0; // Current number of valid input characters
     int periodIndex = -1; // Has the user entered a period?
     int secondLoopCounter = 0;
-    long valuePreDecimal = 0;
-    long valuePostDecimal = 0;
+    unsigned int valuePreDecimal = 0;
+    unsigned int valuePostDecimal = 0;
 
     askForInput:
     printf("%s", prompt);
@@ -108,7 +108,7 @@ struct Money* readDollarInput(char *prompt)
     {
         for(int i = 0; i < currentNumberDigits; i++)
         {
-            valuePreDecimal += (long)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
+            valuePreDecimal += (unsigned int)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
         }
         valuePostDecimal = 0;
     }
@@ -116,12 +116,12 @@ struct Money* readDollarInput(char *prompt)
     {
         for(int i = 0; i < periodIndex; i++)
         {
-            valuePreDecimal += (long)pow(10, periodIndex - i - 1) * (inputString[i] - '0');
+            valuePreDecimal += (unsigned int)pow(10, periodIndex - i - 1) * (inputString[i] - '0');
         }
         // The initial value of j depends on the maximum number of post-decimal digits allowed.
         for(int i = periodIndex + 1, j = 1; i < currentNumberDigits; i++, j--)
         {
-            valuePostDecimal += (long)pow(10, j) * (inputString[i] - '0');
+            valuePostDecimal += (unsigned int)pow(10, j) * (inputString[i] - '0');
         }
     }
 
@@ -142,12 +142,84 @@ struct Money* readDollarInput(char *prompt)
     goto askForInput;
 }
 
+unsigned int readPositiveInteger(char *prompt, int minValue, int maxValue)
+{
+    // Non-loop characters
+    int maxNumberDigits = 9; // Absolute Max value of 999,999,999
+    char inputString[maxNumberDigits];
+    char currentChar;
+
+    // Loop variables
+    int currentNumberDigits = 0; // Current number of valid input characters
+    unsigned int value = 0;
+
+    askForInput:
+    printf("%s", prompt);
+
+    for(currentNumberDigits; currentNumberDigits < maxNumberDigits; currentNumberDigits++)
+    {
+        currentChar = getchar();
+        switch(currentChar)
+        {
+            case '\n': case EOF:
+                if(currentNumberDigits == 0)
+                    goto badInput;
+                else
+                    goto goodInput;
+
+            case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
+                inputString[currentNumberDigits] = currentChar;
+                break;
+            
+            default:
+                flushBuffer();
+                goto badInput;
+        }
+    }
+    if (flushBuffer() > 0)
+        goto badInput;
+
+    goodInput:
+    for(int i = 0; i < currentNumberDigits; i++)
+        value += (unsigned int)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
+    
+    // TODO: COMPARE WITH MIN AND MAX VALUES
+    if(minValue < 0)
+    {
+        minValue = 0;
+    }
+
+    if(!(maxValue < 0))   // garbage branch prediction makes the program not run as it should
+    {
+    }
+    else
+    {
+        printf("condition hit\n");
+        maxValue = pow(10, maxNumberDigits) - 1;
+    }
+
+    if(value < minValue || value > maxValue)
+        goto badInput;
+
+    printf("min %d\n", minValue);
+    printf("max %d\n", maxValue);
+    return value;
+
+    badInput:
+    value = 0;
+    currentNumberDigits = 0;
+    printf("ERROR: Bad value entered. Please try again.\n");
+    goto askForInput;
+}
+
 int main()
 {
     while(1)
     {
-        struct Money* test = readDollarInput("Enter some dollars: ");
-        printf("Pre-Decimal: %ld - Post-Decimal: %ld\n", test->dollars, test->cents);
+        //struct Money* test = readDollarInput("Enter some dollars: ");
+        //printf("Pre-Decimal: %ld - Post-Decimal: %ld\n", test->dollars, test->cents);
+        printf("%ld\n", readPositiveInteger("Enter a number - ", 345, 400));
     }
     return 0;
 }
