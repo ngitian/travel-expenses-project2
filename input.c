@@ -29,7 +29,7 @@ int getCarRental() {
     return result;
 }
 
-int getVehicleExpense() {
+int getMileDriven() {
     int result = 0;
 
     return result;

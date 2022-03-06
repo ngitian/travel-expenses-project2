@@ -14,7 +14,7 @@ int main() {
     int timeDeparture, timeArrival; // in 24-hour format (e.g. 14:00 = 1400)
     int airFare;
     int carRental;
-    int vehicleExpense;
+    int mileDriven;
     int parkingFees;
     int taxiFees;
     int registrationFees;
@@ -30,7 +30,7 @@ int main() {
     timeArrival = getTimeArrival();
     airFare = getAirFare();
     carRental = getCarRental();
-    vehicleExpense = getVehicleExpense();
+    mileDriven = getMileDriven();
     parkingFees = getParkingFee();
     taxiFees = getTaxiFee();
     registrationFees = getRegistrationFee();
@@ -40,7 +40,7 @@ int main() {
     // calculation
     calculateAirfare(airFare, &totalExpense, &totalAllowable);
     calculateCarRental(carRental, &totalExpense, &totalAllowable);
-    calculateVehicleExpense(vehicleExpense, &totalExpense, &totalAllowable);
+    calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable);
     calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable);
     calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable);
     calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable);

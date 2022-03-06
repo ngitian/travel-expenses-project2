@@ -5,7 +5,7 @@ int getTimeDeparture();
 int getTimeArrival();
 int getAirFare();
 int getCarRental();
-int getVehicleExpense();
+int getMileDriven();
 int getParkingFee();
 int getTaxiFee();
 int getRegistrationFee();
