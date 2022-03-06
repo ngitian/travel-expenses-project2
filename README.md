@@ -3,10 +3,10 @@
 ### Travel Expenses
 
 
-### Member:
+### Member - duties:
 <ul>
-    <li>Daniel Milligan </li>
-    <li>Neil Patrick Reyes </li>
-    <li>Simon Oyas </li>
-    <li>Yitian Huang </li>
+    <li>Daniel Milligan - ReadValues files </li>
+    <li>Neil Patrick Reyes - Calculaton files </li>
+    <li>Simon Oyas - output files </li>
+    <li>Yitian Huang - main, input files </li>
 </ul>
