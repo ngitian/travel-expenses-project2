@@ -1,3 +1,5 @@
+#include "ReadValues.h"
+#include "input.h"
 
 int getNumOfDays() {
     int result = 0;
@@ -19,6 +21,8 @@ int getTimeArrival() {
 
 int getAirFare() {
     int result = 0;
+
+    Money* m = readDollarInput("Input air fare: ");
 
     return result;
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "output.h"
 
 static float dollarConverter(int centsAmount);
 
