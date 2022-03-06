@@ -23,6 +23,7 @@ int main() {
 
     int totalExpense = 0;
     int totalAllowable = 0;
+    int maxAllowable = 0;
 
     // input
     numOfDays = getNumOfDays();
@@ -38,17 +39,17 @@ int main() {
     mealExpenses = getMealExpenses(numOfDays); // require numOfDays, need to be change
 
     // calculation
-    calculateAirfare(airFare, &totalExpense, &totalAllowable);
-    calculateCarRental(carRental, &totalExpense, &totalAllowable);
-    calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable);
-    calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable);
-    calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable);
-    calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable);
-    calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable);
-    calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable);
+    calculateAirfare(airFare, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateCarRental(carRental, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable, &maxAllowable);
     
     // output
-    display(totalExpense, totalAllowable);
+    display(totalExpense, totalAllowable, maxAllowable);
 
     // good bye message
     printf("Have a nice day!\n");
