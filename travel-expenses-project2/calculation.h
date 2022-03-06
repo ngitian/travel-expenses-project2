@@ -17,3 +17,6 @@ double getParkingFees(void);
 
 void setRegistrationFees(double);
 double getRegistrationFees(void);
+
+void setHotelFees(double);
+double getHotelFees(void);

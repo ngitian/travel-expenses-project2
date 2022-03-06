@@ -3,7 +3,7 @@
 
     int days, departureTime, arrivalTime, parking, miles, meals;
     bool taxi, privateVehicle;
-    double parkingFee, taxiFees, hotelExpenses, registrationFees;
+    double parkingFee, taxiFees, hotelFees, registrationFees;
     double totalExpenses = 0;
     double allowedExpenses = 0;
     double excessExpenses = 0;
@@ -101,7 +101,7 @@
         excessExpenses = excessExpenses + tempExcess;
         savedExpenses = savedExpenses + tempSaved;
 
-        return tempParkingFee;
+        return tempParkingFee; //return raw parking fee
     }
 
     void setRegistrationFees(double amount){
@@ -111,4 +111,28 @@
         return registrationFees;
     }
 
-    
+    void setHotelFees(double price){
+        hotelFees = price;
+    }
+    double getHotelFees(void){
+        double tempHotelFee = 0;
+        double tempAllowedFee = 0;
+        double tempExcess = 0;
+        double tempSaved = 0;
+
+        tempHotelFee = hotelFees * (days - 1); //per night so 1 less than day
+        tempAllowedFee = 90 * (days - 1);
+
+        if(tempHotelFee > tempAllowedFee){
+            tempExcess = tempHotelFee - tempAllowedFee;
+        }else{
+            tempSaved = tempAllowedFee - tempHotelFee;
+        }
+
+        totalExpenses = totalExpenses + tempHotelFee;
+        allowedExpenses = allowedExpenses + tempAllowedFee;
+        excessExpenses = excessExpenses + tempExcess;
+        savedExpenses = savedExpenses + tempSaved;
+
+        return tempHotelFee; //return raw hotel fee
+    }
