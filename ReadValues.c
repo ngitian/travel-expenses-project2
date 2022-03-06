@@ -141,13 +141,3 @@ struct Money* readDollarInput(char *prompt)
     printf("ERROR: Bad value entered. Please try again.\n");
     goto askForInput;
 }
-
-int main()
-{
-    while(1)
-    {
-        struct Money* test = readDollarInput("Enter some dollars: ");
-        printf("Pre-Decimal: %ld - Post-Decimal: %ld\n", test->dollars, test->cents);
-    }
-    return 0;
-}
