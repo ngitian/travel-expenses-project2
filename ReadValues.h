@@ -1,3 +1,5 @@
+#ifndef READVALUES_H
+#define READVALUES_H
 struct Money
 {
     long dollars;
@@ -6,3 +8,4 @@ struct Money
 
 int flushBuffer();
 struct Money* readDollarInput(char *prompt);
+#endif
