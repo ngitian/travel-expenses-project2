@@ -1,6 +1,8 @@
 #include "ReadValues.h"
 #include "input.h"
 
+#include <stdio.h>
+
 int getNumOfDays() {
     int result = 0;
 
@@ -20,16 +22,14 @@ int getTimeArrival() {
 }
 
 int getAirFare() {
-    int result = 0;
-
-    Money* m = readDollarInput("Input air fare: ");
-
+    struct Money* m = readDollarInput("Input round-trip airfare amount: ");
+    int result = m->dollars * 100 + m->cents;
     return result;
 }
 
 int getCarRental() {
-    int result = 0;
-
+    struct Money* m = readDollarInput("Input car rental amount: ");
+    int result = m->dollars * 100 + m->cents;
     return result;
 }
 
@@ -40,8 +40,8 @@ int getMileDriven() {
 }
 
 int getParkingFee() {
-    int result = 0;
-
+    struct Money* m = readDollarInput("Input parking fees amount: ");
+    int result = m->dollars * 100 + m->cents;
     return result;
 }
 
@@ -52,14 +52,14 @@ int getTaxiFee() {
 }
 
 int getRegistrationFee() {
-    int result = 0;
-
+    struct Money* m = readDollarInput("Input conference or seminar registration fees: ");
+    int result = m->dollars * 100 + m->cents;
     return result;
 }
 
 int getHotelExpense() {
-    int result = 0;
-
+    struct Money* m = readDollarInput("Input hotel expenses: ");
+    int result = m->dollars * 100 + m->cents;
     return result;
 }
 
