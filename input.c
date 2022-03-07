@@ -12,7 +12,6 @@ int getNumOfDays() {
 int getTimeDeparture() {
     struct Hour* h = readHour("Input depart time hour\n");
     int result = h->hour * 100 + (h->meridiem * 1200);
-    printf("%d\n", result);
 
     return result;
 } 
@@ -20,7 +19,6 @@ int getTimeDeparture() {
 int getTimeArrival() {
     struct Hour* h = readHour("Input arrival time hour\n");
     int result = h->hour * 100 + (h->meridiem * 1200);
-    printf("%d\n", result);
 
     return result;
 }
