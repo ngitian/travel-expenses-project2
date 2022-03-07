@@ -211,10 +211,10 @@ struct Hour* readHour(char *prompt)
     struct Hour* result = (struct Hour*)malloc(sizeof(struct Hour));
 
     printf("%s", prompt);
-    result->meridiem = readPositiveInteger("Will you depart in the morning (a.m.) or afternoon (p.m.)?"
-        " Enter the number '0' for a.m. or the number '1' for p.m. - " , 0, 1);
-    result->hour = readPositiveInteger("What hour during this time period will you depart?"
-        " Enter a number from 1 to 12 - ", 1, 12);
+    result->meridiem = readPositiveInteger("In the morning (a.m.) or afternoon (p.m.)?"
+        " Enter 0 for a.m. or 1 for p.m.: " , 0, 1);
+    result->hour = readPositiveInteger("What hour during this time period?"
+        " Enter a number from 1 to 12: ", 1, 12);
     return result;
 }
 
