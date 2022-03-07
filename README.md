@@ -7,6 +7,6 @@
 <ul>
     <li>Daniel Milligan - ReadValues files </li>
     <li>Neil Patrick Reyes - Calculaton files </li>
-    <li>Simon Oyas - output files </li>
+    <li>Simon Oyas - output files, testings </li>
     <li>Yitian Huang - main, input files </li>
 </ul>
