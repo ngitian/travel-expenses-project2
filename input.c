@@ -40,10 +40,21 @@ int getTimeDeparture() {
 } 
 
 int getTimeArrival() {
-    int result = 0;
+    int result = -1;
 
-    printf("\nInput arrival time(14:00=1400): ");
-    scanf("%d", &result);
+    while (result < 0 || result > 2359) {
+        char input[4];
+        printf("\nInput arrival time(14:00=1400): ");
+        scanf("%s", input);
+        result = strtol(input, NULL, 10);
+        if (result < 0) {
+            printf("Can't have time less than 00:00 (0-2359)\n");
+        } else if (result > 2359) {
+            printf("Can't have time greater than 23:59(0-2359)\n");
+        } else if (strtol(input + 2, NULL, 10) > 5) {
+            printf("Can't have minutes greater than 59\n");
+        }
+    }
 
     return result;
 }
@@ -60,11 +71,11 @@ int getCarRental() {
     return result;
 }
 
-int getMileDriven() {
-    int result = 0;
+float getMileDriven() {
+    float result = 0.0;
 
-    printf("\nInput miles driven if there's private vehicle: ");
-    scanf("%d", &result);
+    struct Money* m = readDollarInput("\nInput miles driven if there's a private vehicle used (0 if none): ");
+    result = m->dollars + (float) m->cents / 100;
 
     return result;
 }
@@ -75,8 +86,23 @@ int getParkingFee() {
     return result;
 }
 
-int getTaxiFee() {
-    int result = 0;
+int* getTaxiFees(int numOfDays) {
+    int *result = malloc(numOfDays * sizeof(int));
+
+    if (result == NULL) {
+        printf("System did not allocate necessary memory!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i=0; i < numOfDays; ++i) {
+        int userInput = -1;
+        while (userInput < 0) {
+            printf("\nDay %d:\n", i+1);
+            struct Money* m = readDollarInput("Input taxi fees, 0 if there's no taxi fee: ");
+            userInput = m->dollars * 100 + m->cents;
+        }
+        *(result + i) = userInput; 
+    }
 
     return result;
 }
@@ -93,9 +119,33 @@ int getHotelExpense() {
     return result;
 }
 
-// todo: change implementation
-int getMealExpenses(int numOfDays) {
-    int result = 0;
+int* getMealExpenses(int numOfDays) {
+    int *result = malloc(numOfDays * 3 * sizeof(int));
+
+    if (result == NULL) {
+        printf("System did not allocate necessary memory!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i=0; i < numOfDays; ++i) {
+        printf("\nDay %d:\n", i+1);
+        for (int j=0; j < 3; ++j) {
+            if(j == 0) {
+                printf("Breakfast-");
+            } else if (j == 1) {
+                printf("Lunch-");
+            } else {
+                printf("Dinner-");
+            }
+
+            int userInput = -1;
+            while (userInput < 0) {
+                struct Money* m = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                userInput = m->dollars * 100 + m->cents;
+            }
+            *(result + i + j) = userInput; 
+        }
+    }
 
     return result;
 }

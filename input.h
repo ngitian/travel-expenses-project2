@@ -5,10 +5,10 @@ int getTimeDeparture();
 int getTimeArrival();
 int getAirFare();
 int getCarRental();
-int getMileDriven();
+float getMileDriven();
 int getParkingFee();
-int getTaxiFee();
+int* getTaxiFees(int numOfDays);
 int getRegistrationFee();
 int getHotelExpense();
-int getMealExpenses(int numOfDays);
+int* getMealExpenses(int numOfDays);
 #endif

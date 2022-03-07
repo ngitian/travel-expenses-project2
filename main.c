@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "input.h"
 #include "calculation.h"
 #include "output.h"
@@ -10,16 +11,16 @@ int main() {
 
 
     // declare variables (in cents)
-    int numOfDays;
+    int numOfDays = 0;
     int timeDeparture, timeArrival; // in 24-hour format (e.g. 14:00 = 1400)
-    int airFare;
-    int carRental;
-    int mileDriven;
-    int parkingFees;
-    int taxiFees;
-    int registrationFees;
-    int hotelExpenses;
-    int mealExpenses; // need to implement meal Expense as array
+    int airFare = 0;
+    int carRental = 0;
+    float mileDriven = 0.0;
+    int parkingFees = 0;
+    int *taxiFees;
+    int registrationFees = 0;
+    int hotelExpenses = 0;
+    int *mealExpenses = 0;
 
     int totalExpense = 0;
     int totalAllowable = 0;
@@ -27,29 +28,45 @@ int main() {
 
     // input
     numOfDays = getNumOfDays();
-    timeDeparture = getTimeDeparture(); 
-    timeArrival = getTimeArrival();
+    timeDeparture = getTimeDeparture(); // todo: fix bug for 1 day trip, check for arrival before departure
+    timeArrival = getTimeArrival(); // todo: input validation for mins
     airFare = getAirFare();
     carRental = getCarRental();
     mileDriven = getMileDriven();
     parkingFees = getParkingFee();
-    taxiFees = getTaxiFee();
+    taxiFees = getTaxiFees(numOfDays);
     registrationFees = getRegistrationFee();
-    hotelExpenses = getHotelExpense();
-    mealExpenses = getMealExpenses(numOfDays); // require numOfDays, need to be change
+    if (numOfDays > 1) {
+        hotelExpenses = getHotelExpense();
+    }
+    mealExpenses = getMealExpenses(numOfDays);
 
     // calculation
     calculateAirfare(airFare, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
     calculateCarRental(carRental, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
     calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
     calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
     calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
     calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable, &maxAllowable);
-    calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
+    if (numOfDays > 1) {
+        calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
+    }
     calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable, &maxAllowable);
+    printf("%d\n", totalExpense);
+
     
     // output
     display(totalExpense, totalAllowable, maxAllowable);
+
+    // free memory
+    free(taxiFees);
+    free(mealExpenses);
 
     // good bye message
     printf("Have a nice day!\n");

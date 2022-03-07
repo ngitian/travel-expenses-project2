@@ -8,7 +8,6 @@ void display(int totalExpense, int totalAllowable, int maxAllowable) {
     printf("Total Expense incurred by the businessperson: $%.2f\n",dollarConverter(totalExpense));
     printf("Total Allowable expenses for the trip: $%.2f\n", dollarConverter(totalAllowable));
 
-    printf("%d, %d, %d\n", totalExpense, totalAllowable, maxAllowable);
     if (totalExpense > maxAllowable) {
         printf("Excess reimbursed by the businessperson: $%.2f\n", dollarConverter(totalExpense - totalAllowable));
     } else {
