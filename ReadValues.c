@@ -22,8 +22,8 @@ struct Money* readDollarInput(char *prompt)
     int currentNumberDigits = 0; // Current number of valid input characters
     int periodIndex = -1; // Has the user entered a period?
     int secondLoopCounter = 0;
-    long valuePreDecimal = 0;
-    long valuePostDecimal = 0;
+    unsigned int valuePreDecimal = 0;
+    unsigned int valuePostDecimal = 0;
 
     askForInput:
     printf("%s", prompt);
@@ -108,7 +108,7 @@ struct Money* readDollarInput(char *prompt)
     {
         for(int i = 0; i < currentNumberDigits; i++)
         {
-            valuePreDecimal += (long)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
+            valuePreDecimal += (unsigned int)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
         }
         valuePostDecimal = 0;
     }
@@ -116,12 +116,12 @@ struct Money* readDollarInput(char *prompt)
     {
         for(int i = 0; i < periodIndex; i++)
         {
-            valuePreDecimal += (long)pow(10, periodIndex - i - 1) * (inputString[i] - '0');
+            valuePreDecimal += (unsigned int)pow(10, periodIndex - i - 1) * (inputString[i] - '0');
         }
         // The initial value of j depends on the maximum number of post-decimal digits allowed.
         for(int i = periodIndex + 1, j = 1; i < currentNumberDigits; i++, j--)
         {
-            valuePostDecimal += (long)pow(10, j) * (inputString[i] - '0');
+            valuePostDecimal += (unsigned int)pow(10, j) * (inputString[i] - '0');
         }
     }
 
@@ -141,3 +141,80 @@ struct Money* readDollarInput(char *prompt)
     printf("ERROR: Bad value entered. Please try again.\n");
     goto askForInput;
 }
+
+unsigned int readPositiveInteger(char *prompt, int minValue, int maxValue)
+{
+    // Non-loop characters
+    int maxNumberDigits = 9; // Absolute Max value of 999,999,999
+    char inputString[maxNumberDigits];
+    char currentChar;
+
+    // Loop variables
+    int currentNumberDigits = 0; // Current number of valid input characters
+    unsigned int value = 0;
+
+    askForInput:
+    printf("%s", prompt);
+
+    for(currentNumberDigits; currentNumberDigits < maxNumberDigits; currentNumberDigits++)
+    {
+        currentChar = getchar();
+        switch(currentChar)
+        {
+            case '\n': case EOF:
+                if(currentNumberDigits == 0)
+                    goto badInput;
+                else
+                    goto goodInput;
+
+            case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
+                inputString[currentNumberDigits] = currentChar;
+                break;
+            
+            default:
+                flushBuffer();
+                goto badInput;
+        }
+    }
+    if (flushBuffer() > 0)
+        goto badInput;
+
+    goodInput:
+    for(int i = 0; i < currentNumberDigits; i++)
+        value += (unsigned int)pow(10, currentNumberDigits - i - 1) * (inputString[i] - '0');
+    
+    // TODO: COMPARE WITH MIN AND MAX VALUES
+    if(minValue < 0)
+    {
+        minValue = 0;
+    }
+
+    if(maxValue < 0)   // garbage branch prediction makes the program not run as it should
+    {
+        printf("This if block executed");
+        maxValue = (int)pow(10, maxNumberDigits) - 1;
+    }
+    if(value < minValue || value > maxValue)
+        goto badInput;
+    return value;
+
+    badInput:
+    value = 0;
+    currentNumberDigits = 0;
+    printf("ERROR: Bad value entered. Please try again.\n");
+    goto askForInput;
+}
+
+struct Hour* readHour(char *prompt)
+{
+    struct Hour* result = (struct Hour*)malloc(sizeof(struct Hour));
+
+    printf("%s", prompt);
+    result->meridiem = readPositiveInteger("Will you depart in the morning (a.m.) or afternoon (p.m.)?"
+        " Enter the number '0' for a.m. or the number '1' for p.m. - " , 0, 1);
+    result->hour = readPositiveInteger("What hour during this time period will you depart?"
+        " Enter a number from 1 to 12 - ", 1, 12);
+    return result;
+}
+
