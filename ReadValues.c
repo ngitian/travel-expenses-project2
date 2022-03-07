@@ -190,20 +190,13 @@ unsigned int readPositiveInteger(char *prompt, int minValue, int maxValue)
         minValue = 0;
     }
 
-    if(!(maxValue < 0))   // garbage branch prediction makes the program not run as it should
+    if(maxValue < 0)   // garbage branch prediction makes the program not run as it should
     {
+        printf("This if block executed");
+        maxValue = (int)pow(10, maxNumberDigits) - 1;
     }
-    else
-    {
-        printf("condition hit\n");
-        maxValue = pow(10, maxNumberDigits) - 1;
-    }
-
     if(value < minValue || value > maxValue)
         goto badInput;
-
-    printf("min %d\n", minValue);
-    printf("max %d\n", maxValue);
     return value;
 
     badInput:
@@ -219,7 +212,7 @@ int main()
     {
         //struct Money* test = readDollarInput("Enter some dollars: ");
         //printf("Pre-Decimal: %ld - Post-Decimal: %ld\n", test->dollars, test->cents);
-        printf("%ld\n", readPositiveInteger("Enter a number - ", 345, 400));
+        //printf("%d\n", readPositiveInteger("Enter a value - ", 1, 12));
     }
     return 0;
 }
