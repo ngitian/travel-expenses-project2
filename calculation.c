@@ -71,9 +71,6 @@ void calculateHotelExpenses(int hotelExpenses, int numOfDays, int *totalExpense,
 }
 
 void calculateMealExpenses(int* mealExpenses, int numOfDays, int  timeDeparture, int timeArrival, int *totalExpense, int *totalAllowable, int *maxAllowable) {
-    printf("%d\n", *(mealExpenses + 0));
-    printf("%d\n", *(mealExpenses + 1));
-    printf("%d\n", *(mealExpenses + 2));
     for (int i=0; i < numOfDays; ++i) {
         for (int j=0; j<3; ++j) {
             int fee = *(mealExpenses + i + j);

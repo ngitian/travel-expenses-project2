@@ -43,22 +43,15 @@ int main() {
 
     // calculation
     calculateAirfare(airFare, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     calculateCarRental(carRental, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
     if (numOfDays > 1) {
         calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
     }
     calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable, &maxAllowable);
-    printf("%d\n", totalExpense);
 
     
     // output
