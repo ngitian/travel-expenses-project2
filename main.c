@@ -41,7 +41,7 @@ int main() {
     if (numOfDays > 1) {
         hotelExpenses = getHotelExpense();
     }
-    mealExpenses = getMealExpenses(numOfDays);
+    mealExpenses = getMealExpenses(numOfDays, timeDeparture, timeArrival);
 
     // calculation
     calculateAirfare(airFare, &totalExpense, &totalAllowable, &maxAllowable);
@@ -53,11 +53,11 @@ int main() {
     if (numOfDays > 1) {
         calculateHotelExpenses(hotelExpenses, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
     }
-    for (int i = 0; i < numOfDays; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            printf("%d, %d\n", i * 3 + j, *(mealExpenses + i * 3 + j));
-        }
-    }
+    //for (int i = 0; i < numOfDays; ++i) {
+    //    for (int j = 0; j < 3; ++j) {
+    //        printf("%d, %d\n", i * 3 + j, *(mealExpenses + i * 3 + j));
+    //    }
+    //}
     calculateMealExpenses(mealExpenses, numOfDays, timeDeparture, timeArrival, &totalExpense, &totalAllowable, &maxAllowable);
 
     

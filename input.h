@@ -11,5 +11,5 @@ int getParkingFee();
 int* getTaxiFees(int numOfDays);
 int getRegistrationFee();
 int getHotelExpense();
-int* getMealExpenses(int numOfDays);
+int* getMealExpenses(int numOfDays, int departTime, int arrivalTime);
 #endif

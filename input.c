@@ -90,7 +90,7 @@ int getHotelExpense() {
     return result;
 }
 
-int* getMealExpenses(int numOfDays) {
+int* getMealExpenses(int numOfDays, int departTime, int arrivalTime) {
     int *result = malloc(numOfDays * 3 * sizeof(int));
 
     if (result == NULL) {
@@ -98,9 +98,87 @@ int* getMealExpenses(int numOfDays) {
         exit(EXIT_FAILURE);
     }
 
-    for (int i=0; i < numOfDays; ++i) {
+    for (int i=0; i < numOfDays; ++i) 
+    {
         printf("\nDay %d:\n", i+1);
-        for (int j=0; j < 3; ++j) {
+
+        if(i == 0)
+        {
+            int firstDayInput = 0;
+            struct Money* firstDayDollars;
+            if(departTime < 700)
+            {
+                printf("Breakfast-");
+                firstDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                firstDayInput = firstDayDollars->dollars * 100 + firstDayDollars->cents;
+                *(result) = firstDayInput;
+            }
+            else
+                *(result) = 0; 
+            if(departTime < 1200)
+            {
+                printf("Lunch-");
+                firstDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                firstDayInput = firstDayDollars->dollars * 100 + firstDayDollars->cents;
+                *(result + 1) = firstDayInput;
+            }
+            else
+                *(result + 1) = 0;
+            if(departTime < 1800)
+            {
+                printf("Dinner-");
+                firstDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                firstDayInput = firstDayDollars->dollars * 100 + firstDayDollars->cents;
+                *(result + 2) = firstDayInput;
+            }
+            else
+            {
+                *(result + 2) = 0;
+                printf("No meals covered the first day due to late departure time.\n");
+            }
+            continue;
+        }
+        if(i == numOfDays - 1 && i != 0)
+        {
+            int lastDayInput = 0;
+            struct Money* lastDayDollars;
+            
+            if(arrivalTime >= 800)
+            {
+                printf("Breakfast-");
+                lastDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                lastDayInput = lastDayDollars->dollars * 100 + lastDayDollars->cents;
+                *(result + i * 3) = lastDayInput;
+            }
+            else
+            {
+                *(result + i * 3) = 0;
+                printf("No meals covered the last day due to early return time.\n");
+            }
+            if(arrivalTime >= 1300)
+            {
+                printf("Lunch-");
+                lastDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                lastDayInput = lastDayDollars->dollars * 100 + lastDayDollars->cents;
+                *(result + i * 3 + 1) = lastDayInput;
+            }
+            else
+                *(result + i * 3 + 1) = 0;
+            
+            if(arrivalTime >= 1900)
+            {
+                printf("Dinner-");
+                lastDayDollars = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
+                lastDayInput = lastDayDollars->dollars * 100 + lastDayDollars->cents;
+                *(result + i * 3 + 2) = lastDayInput;
+            }
+            else
+                *(result + i * 3 + 2) = 0;
+            
+            continue;
+        }
+        for (int j=0; j < 3; ++j) 
+        {
             if(j == 0) {
                 printf("Breakfast-");
             } else if (j == 1) {
