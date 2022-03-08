@@ -10,27 +10,27 @@ int getNumOfDays() {
 }
 
 int getTimeDeparture() {
-    struct Hour* h = readHour("Input depart time hour\n");
+    struct Hour* h = readHour("Input the hour you will depart and begin the trip on.\n");
     int result = h->hour * 100 + (h->meridiem * 1200);
 
     return result;
 } 
 
 int getTimeArrival() {
-    struct Hour* h = readHour("Input arrival time hour\n");
+    struct Hour* h = readHour("Input the hour you will arrive back home from your tip.\n");
     int result = h->hour * 100 + (h->meridiem * 1200);
 
     return result;
 }
 
 int getAirFare() {
-    struct Money* m = readDollarInput("\nInput round-trip airfare amount: ");
+    struct Money* m = readDollarInput("\nInput round-trip airfare expenses: ");
     int result = m->dollars * 100 + m->cents;
     return result;
 }
 
 int getCarRental() {
-    struct Money* m = readDollarInput("\nInput car rental amount: ");
+    struct Money* m = readDollarInput("\nInput car rental expenses: ");
     int result = m->dollars * 100 + m->cents;
     return result;
 }
@@ -41,6 +41,13 @@ float getMileDriven() {
     struct Money* m = readDollarInput("\nInput miles driven if there's a private vehicle used (0 if none): ");
     result = m->dollars + (float) m->cents / 100;
 
+    return result;
+}
+
+int getIntegerMilesDriven()
+{
+    int result = 0;
+    result = readPositiveInteger("\nInput miles driven if there's a private vehicle used (0 if none): ", 0, 999999999);
     return result;
 }
 

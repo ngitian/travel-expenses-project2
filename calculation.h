@@ -2,7 +2,7 @@
 #define CALCULATION_H
 void calculateAirfare(int airFare, int *totalExpense, int *totalAllowable, int *maxAllowable);
 void calculateCarRental(int carRental, int *totalExpense, int *totalAllowable, int *maxAllowable);
-void calculateVehicleExpense(float mileDriven, int *totalExpense, int *totalAllowable, int *maxAllowable);
+void calculateVehicleExpense(int mileDriven, int *totalExpense, int *totalAllowable, int *maxAllowable);
 void calculateParkingFees(int parkingFees, int numOfDays, int *totalExpense, int *totalAllowable, int *maxAllowable);
 void calculateTaxiFees(int* taxiFees, int numOfDays, int *totalExpense, int *totalAllowable, int *maxAllowable);
 void calculateRegistrationFees(int registrationFees, int *totalExpense, int *totalAllowable, int *maxAllowable);

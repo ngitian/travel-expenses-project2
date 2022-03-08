@@ -6,6 +6,7 @@ int getTimeArrival();
 int getAirFare();
 int getCarRental();
 float getMileDriven();
+int getIntegerMilesDriven();
 int getParkingFee();
 int* getTaxiFees(int numOfDays);
 int getRegistrationFee();

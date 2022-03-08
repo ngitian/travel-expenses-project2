@@ -16,6 +16,7 @@ int main() {
     int airFare = 0;
     int carRental = 0;
     float mileDriven = 0.0;
+    int intMilesDriven = 0;
     int parkingFees = 0;
     int *taxiFees;
     int registrationFees = 0;
@@ -32,7 +33,8 @@ int main() {
     timeArrival = getTimeArrival(); // todo: input validation for mins
     airFare = getAirFare();
     carRental = getCarRental();
-    mileDriven = getMileDriven();
+    //mileDriven = getMileDriven();
+    intMilesDriven = getIntegerMilesDriven();
     parkingFees = getParkingFee();
     taxiFees = getTaxiFees(numOfDays);
     registrationFees = getRegistrationFee();
@@ -44,7 +46,7 @@ int main() {
     // calculation
     calculateAirfare(airFare, &totalExpense, &totalAllowable, &maxAllowable);
     calculateCarRental(carRental, &totalExpense, &totalAllowable, &maxAllowable);
-    calculateVehicleExpense(mileDriven, &totalExpense, &totalAllowable, &maxAllowable);
+    calculateVehicleExpense(intMilesDriven, &totalExpense, &totalAllowable, &maxAllowable);
     calculateParkingFees(parkingFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
     calculateTaxiFees(taxiFees, numOfDays, &totalExpense, &totalAllowable, &maxAllowable);
     calculateRegistrationFees(registrationFees, &totalExpense, &totalAllowable, &maxAllowable);

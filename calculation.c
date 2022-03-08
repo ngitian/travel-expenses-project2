@@ -20,7 +20,7 @@ void calculateCarRental(int carRental, int *totalExpense, int *totalAllowable, i
     *maxAllowable += carRental;
 }
 
-void calculateVehicleExpense(float mileDriven, int *totalExpense, int *totalAllowable, int *maxAllowable) {
+void calculateVehicleExpense(int mileDriven, int *totalExpense, int *totalAllowable, int *maxAllowable) {
     *totalExpense += mileDriven * EXPENSE_PER_MILE;
     *totalAllowable += mileDriven * EXPENSE_PER_MILE;
     *maxAllowable += mileDriven * EXPENSE_PER_MILE;
