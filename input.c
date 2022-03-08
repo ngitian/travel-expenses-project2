@@ -107,7 +107,7 @@ int* getMealExpenses(int numOfDays) {
                 struct Money* m = readDollarInput("Input meal fee, 0 if there's no meal fee: ");
                 userInput = m->dollars * 100 + m->cents;
             }
-            *(result + i + j) = userInput; 
+            *(result + i * 3 + j) = userInput; 
         }
     }
 

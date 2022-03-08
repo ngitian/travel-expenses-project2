@@ -71,9 +71,9 @@ void calculateHotelExpenses(int hotelExpenses, int numOfDays, int *totalExpense,
 }
 
 void calculateMealExpenses(int* mealExpenses, int numOfDays, int  timeDeparture, int timeArrival, int *totalExpense, int *totalAllowable, int *maxAllowable) {
-    for (int i=0; i < numOfDays; ++i) {
-        for (int j=0; j<3; ++j) {
-            int fee = *(mealExpenses + i + j);
+    for (int i = 0; i < numOfDays; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            int fee = *(mealExpenses + i * 3 + j);
             *totalExpense += fee;
 
             int allowable;
@@ -89,15 +89,15 @@ void calculateMealExpenses(int* mealExpenses, int numOfDays, int  timeDeparture,
             if (i == 0 && i == numOfDays - 1) {
                 if (j == 0) { // breakfast cover if depart < 7 and arrival > 8
                     if (timeArrival < 700 || timeDeparture > 800) {
-                        break;
+                        continue;
                     }
                 } else if (j == 1) { // lunch cover if depart < 12 and arrival > 13
                     if (timeArrival < 1200 || timeDeparture > 1300) {
-                        break;
+                        continue;
                     }
                 } else { // dinner cover if depart < 18 and arrival > 19
                     if (timeArrival < 1800 || timeDeparture > 1900) {
-                        break;
+                        continue;
                     }
                 }
 
@@ -110,14 +110,14 @@ void calculateMealExpenses(int* mealExpenses, int numOfDays, int  timeDeparture,
 
             } else if (i == 0) { // first day
                 if (timeDeparture > 1800) {
-                    break;
+                    continue;
                 } else if (timeDeparture > 1200) { 
                     if (j == 1) {
-                        break;
+                        continue;
                     }
                 } else if (timeDeparture > 700) {
                     if (j == 0) {
-                        break;
+                        continue;
                     }
                 }
 
@@ -131,14 +131,14 @@ void calculateMealExpenses(int* mealExpenses, int numOfDays, int  timeDeparture,
             } else if (i == numOfDays - 1) { // last day
 
                 if (timeArrival < 800) {
-                    break;
+                    continue;
                 } else if (timeArrival < 1300) { 
                     if (j == 1) {
-                        break;
+                        continue;
                     }
                 } else if (timeArrival < 1900) {
                     if (j == 2) {
-                        break;
+                        continue;
                     }
                 }
 
